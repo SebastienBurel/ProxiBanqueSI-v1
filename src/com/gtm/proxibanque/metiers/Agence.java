@@ -1,5 +1,9 @@
 package com.gtm.proxibanque.metiers;
-
+/**
+ * Classe Agence
+ * @author severinthibaut
+ *
+ */
 public class Agence {
 
 	private String numID;

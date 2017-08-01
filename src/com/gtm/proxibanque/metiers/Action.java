@@ -1,5 +1,9 @@
 package com.gtm.proxibanque.metiers;
-
+/**
+ * Classe d'actions
+ * @author severinthibaut
+ *
+ */
 public class Action {
 
 	private String nom;
