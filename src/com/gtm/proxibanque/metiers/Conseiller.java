@@ -185,8 +185,10 @@ public class Conseiller extends Personne {
 	/**
 	 * Methode de lecture du profil client
 	 * 
-	 * @param nom Nom du client
-	 * @param prenom Prenom du client
+	 * @param nom
+	 *            Nom du client
+	 * @param prenom
+	 *            Prenom du client
 	 */
 	public Client lireClient(String nom, String prenom) {
 		boolean dejaaffiche = false;
@@ -194,6 +196,7 @@ public class Conseiller extends Personne {
 
 			if (nom.equalsIgnoreCase(client.getNom()) && prenom.equalsIgnoreCase(client.getPrenom())) {
 				System.out.println("Donnees du client " + nom + " " + prenom + " :  Solde de Compte Courant = " + client.getCompteCourant().getSolde() + ", solde de Compte Epargne = " + client.getCompteEpargne().getSolde());
+				
 				return client;
 
 			}
@@ -201,7 +204,7 @@ public class Conseiller extends Personne {
 		}
 		if (dejaaffiche == false) {
 			System.out.println("Le client n'existe pas");
-
+			return null;
 		}
 		return null;
 	}
@@ -209,8 +212,10 @@ public class Conseiller extends Personne {
 	/**
 	 * Methode de suppression d'un profil client
 	 * 
-	 * @param nom Nom du client
-	 * @param prenom Prenom du client
+	 * @param nom
+	 *            Nom du client
+	 * @param prenom
+	 *            Prenom du client
 	 */
 	public void supprimerClient(String nom, String prenom) {
 		Iterator<Client> it = clients.iterator();
