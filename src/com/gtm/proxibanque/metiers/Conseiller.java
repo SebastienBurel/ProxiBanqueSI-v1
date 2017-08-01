@@ -29,20 +29,19 @@ public class Conseiller extends Personne {
 		this.clients = clients;
 	}
 
-
 	/**
 	 * Methode de creation d'un profil client
-	 * @param client Client à ajouter
 	 * 
 	 * @param client
-	 *            Client ï¿½ ajouter
+	 *            Client à ajouter
+	 * 
 	 */
 	public void creerClient(Client client) {
 
 		if (clients.size() < Constantes.NOMBRE_MAX_CLIENTS_PAR_CONSEILLER) {
 			boolean existant = false;
 			for (Client client2 : this.clients) {
-				if (client2.getNom() == client.getNom() && client2.getPrenom() == client.getPrenom()) {
+				if (client2.getNom().equalsIgnoreCase(client.getNom()) && client2.getPrenom().equalsIgnoreCase(client.getPrenom())) {
 					System.out.println("Impossible de creer ce client, il existe deja.");
 					existant = true;
 				}
@@ -178,34 +177,31 @@ public class Conseiller extends Personne {
 			acheterAction(action1);
 		}
 	}
-	
+
 	public void acheterAction(Action action) {
-		System.out.println("Achat d'une action " + action.getNom() + " au prix de " + action.getCours());		
+		System.out.println("Achat d'une action " + action.getNom() + " au prix de " + action.getCours());
 	}
 
 	/**
 	 * Methode de lecture du profil client
 	 * 
-	 * @param nom
-	 *            Nom du client
-	 * @param prenom
-	 *            Prenom du client
+	 * @param nom Nom du client
+	 * @param prenom Prenom du client
 	 */
 	public Client lireClient(String nom, String prenom) {
 		boolean dejaaffiche = false;
 		for (Client client : this.clients) {
 
 			if (nom.equalsIgnoreCase(client.getNom()) && prenom.equalsIgnoreCase(client.getPrenom())) {
-				System.out.println("Donnees du client " + nom + " " + prenom + " :  Solde de Compte Courant = " + client.getCompteCourant().getSolde() + ", solde de Compte Epargne = "
-						+ client.getCompteEpargne().getSolde());
+				System.out.println("Donnees du client " + nom + " " + prenom + " :  Solde de Compte Courant = " + client.getCompteCourant().getSolde() + ", solde de Compte Epargne = " + client.getCompteEpargne().getSolde());
 				return client;
-				
+
 			}
 
 		}
 		if (dejaaffiche == false) {
 			System.out.println("Le client n'existe pas");
-			
+
 		}
 		return null;
 	}
@@ -213,10 +209,8 @@ public class Conseiller extends Personne {
 	/**
 	 * Methode de suppression d'un profil client
 	 * 
-	 * @param nom
-	 *            Nom du client
-	 * @param prenom
-	 *            Prenom du client
+	 * @param nom Nom du client
+	 * @param prenom Prenom du client
 	 */
 	public void supprimerClient(String nom, String prenom) {
 		Iterator<Client> it = clients.iterator();
