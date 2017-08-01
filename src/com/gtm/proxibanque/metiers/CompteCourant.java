@@ -28,10 +28,25 @@ public class CompteCourant extends Compte {
 	}
 	
 	/**
+	 * Methode permettant de verser de l'argent sur le compte
+	 * @param mt montant ра verser sur le compte
+	 */
+	public void verser(float mt) {
+		if (mt >= 0.) {
+			solde += mt;
+			System.out.println("Versement effectue de " + mt + "! Le compte courant a maintenant un solde de " + solde);
+		} else {
+			System.out.println("Erreur : vous ne pouvez pas verser un montant negatif !");
+		}
+	}
+	
+	
+	
+	/**
 	 * Methode permettant de retirer de l'argent sur le compte si le solde et le decouvert l'autorise
 	 * @param mt montant ра retirer du compte
 	 */
-	@Override
+	//@Override
 	public void retirer(float mt) {
 		if (mt < 0) {
 			System.out.println("Erreur : le montant ра retirer est negatif !");
@@ -40,7 +55,7 @@ public class CompteCourant extends Compte {
 				solde -= mt;
 				System.out.println("Retrait effectue de " + mt + "! Le compte courant a maintenant un solde de " + solde);
 			} else {
-				System.out.println("Erreur : Le decouvert du compte depasse le decouvert autorise !");
+				System.out.println("Erreur : Le decouvert du compte courant depasse le decouvert autorise !");
 			}
 		}
 		

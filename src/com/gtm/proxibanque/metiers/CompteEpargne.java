@@ -41,6 +41,37 @@ public class CompteEpargne extends Compte {
 	}
 	
 	/**
+	 * Methode permettant de verser de l'argent sur le compte
+	 * @param mt montant ра verser sur le compte
+	 */
+	public void verser(float mt) {
+		if (mt >= 0.) {
+			solde += mt;
+			System.out.println("Versement effectue de " + mt + "! Le compte epargne a maintenant un solde de " + solde);
+		} else {
+			System.out.println("Erreur : vous ne pouvez pas verser un montant negatif !");
+		}
+	}
+	
+	/**
+	 * Methode permettant de retirer de l'argent sur le compte si le solde le permet
+	 * @param mt montant ра retirer du compte
+	 */
+	public void retirer(float mt) {
+		if (mt < 0) {
+			System.out.println("Erreur : le montant ра retirer est negatif !");
+		} else {
+			if (solde >= mt) {
+				solde -= mt;
+				System.out.println("Retrait effectue de " + mt + "! Le compte epargne a maintenant un solde de " + solde);
+			} else {
+				System.out.println("Erreur : Le solde est insuffisant !");
+			}
+		}
+		
+	}
+	
+	/**
 	 * Methode permettant de calculer les interets et d'afficher le nouveau solde
 	 */
 	public void calculInterets() {

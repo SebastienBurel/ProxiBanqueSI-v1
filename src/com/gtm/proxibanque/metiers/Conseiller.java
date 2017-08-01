@@ -8,6 +8,7 @@ import com.gtm.proxibanque.presentation.Constantes;
 
 /**
  * Classe de Conseiller
+ * 
  * @author Sebounet team
  *
  */
@@ -22,7 +23,9 @@ public class Conseiller extends Personne {
 
 	/**
 	 * Methode de creation d'un profil client
-	 * @param client Client à ajouter
+	 * 
+	 * @param client
+	 *            Client à ajouter
 	 */
 	public void creerClient(Client client) {
 
@@ -51,11 +54,14 @@ public class Conseiller extends Personne {
 	public void modifierClient() {
 
 	}
-	
+
 	/**
 	 * Methode de virements du Compte Epargne vers le Compte Courant
-	 * @param client Proprietaire des comptes
-	 * @param mt Montant verse
+	 * 
+	 * @param client
+	 *            Proprietaire des comptes
+	 * @param mt
+	 *            Montant verse
 	 */
 	public void verserCompteEpargneVersCompteCourant(Client client, float mt) {
 		if (client.getCompteCourant() == null) {
@@ -80,8 +86,11 @@ public class Conseiller extends Personne {
 
 	/**
 	 * Methode de virements du Compte Courant vers le Compte Epargne
-	 * @param client Proprietaire des comptes
-	 * @param mt Montant verse
+	 * 
+	 * @param client
+	 *            Proprietaire des comptes
+	 * @param mt
+	 *            Montant verse
 	 */
 	public void verserCompteCourantVersCompteEpargne(Client client, float mt) {
 		if (client.getCompteCourant() == null) {
@@ -103,29 +112,33 @@ public class Conseiller extends Personne {
 			}
 		}
 	}
-	
+
 	/**
 	 * Methode de calcul du solde total du client
-	 * @param client Proprietaire des comptes
+	 * 
+	 * @param client
+	 *            Proprietaire des comptes
 	 * @return Solde total du client
 	 */
 	public float calculerSoldeTotal(Client client) {
 		if (client.getCompteCourant() != null) {
 			soldeCompteCourantClient = client.getCompteCourant().getSolde();
 		} else {
-			soldeCompteCourantClient = 0 ;
+			soldeCompteCourantClient = 0;
 		}
 		if (client.getCompteEpargne() != null) {
 			soldeCompteEpargneClient = client.getCompteEpargne().getSolde();
 		} else {
-			soldeCompteEpargneClient = 0 ;
+			soldeCompteEpargneClient = 0;
 		}
 		return soldeCompteCourantClient + soldeCompteEpargneClient;
 	}
 
 	/**
 	 * Methode de simulation du credit consommation
-	 * @param client Proprietaire du compte
+	 * 
+	 * @param client
+	 *            Proprietaire du compte
 	 */
 	public void simulerCreditConso(Client client) {
 		System.out.println("Proposition de credit consommation : ");
@@ -133,15 +146,19 @@ public class Conseiller extends Personne {
 
 	/**
 	 * Methode de simulation de credit immobilier
-	 * @param client Proprietaire du compte
+	 * 
+	 * @param client
+	 *            Proprietaire du compte
 	 */
 	public void simulerCreditImmo(Client client) {
 		System.out.println("Proposition de credit immobilier : ");
 	}
-	
+
 	/**
 	 * Methode de gestion du patrimoine si le client est suffisamment riche
-	 * @param client Proprietaire du compte
+	 * 
+	 * @param client
+	 *            Proprietaire du compte
 	 */
 	public void gererPatrimoine(Client client) {
 		if (calculerSoldeTotal(client) > 500000) {
@@ -152,29 +169,37 @@ public class Conseiller extends Personne {
 
 	/**
 	 * Methode de lecture du profil client
-	 * @param nom Nom du client
-	 * @param prenom Prenom du client
+	 * 
+	 * @param nom
+	 *            Nom du client
+	 * @param prenom
+	 *            Prenom du client
 	 */
-	public void lireClient(String nom, String prenom) {
+	public Client lireClient(String nom, String prenom) {
 		boolean dejaaffiche = false;
 		for (Client client : this.clients) {
-			if (nom == client.getNom() && prenom == client.getPrenom()) {
-				System.out.println("Données du client " + nom + " " + prenom + " : Adresse = " + client.getAdresse() + ", code postal = " + client.getCodepostal() + ", ville = " + client.getVille()
-						+ ", numero de téléphone = " + client.getNumerotelephone());
-				dejaaffiche = true;
+			if (nom.equalsIgnoreCase(client.getNom()) && prenom.equalsIgnoreCase(client.getPrenom())) {
+				System.out.println("Données du client " + nom + " " + prenom + " :  Solde de Compte Courant = " + client.getCompteCourant().getSolde() + ", solde de Compte Epargne = "
+						+ client.getCompteEpargne().getSolde());
+				return client;
+				
 			}
 
 		}
 		if (dejaaffiche == false) {
 			System.out.println("Le client n'existe pas");
+			
 		}
-
+		return null;
 	}
 
 	/**
 	 * Methode de suppression d'un profil client
-	 * @param nom Nom du client
-	 * @param prenom Prenom du client
+	 * 
+	 * @param nom
+	 *            Nom du client
+	 * @param prenom
+	 *            Prenom du client
 	 */
 	public void supprimerClient(String nom, String prenom) {
 		Iterator<Client> it = clients.iterator();
