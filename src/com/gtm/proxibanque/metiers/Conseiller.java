@@ -21,11 +21,21 @@ public class Conseiller extends Personne {
 		this.clients = new HashSet<>();
 	}
 
+	public Collection<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(Collection<Client> clients) {
+		this.clients = clients;
+	}
+
+
 	/**
 	 * Methode de creation d'un profil client
+	 * @param client Client ï¿½ ajouter
 	 * 
 	 * @param client
-	 *            Client à ajouter
+	 *            Client ï¿½ ajouter
 	 */
 	public void creerClient(Client client) {
 
@@ -33,19 +43,19 @@ public class Conseiller extends Personne {
 			boolean existant = false;
 			for (Client client2 : this.clients) {
 				if (client2.getNom() == client.getNom() && client2.getPrenom() == client.getPrenom()) {
-					System.out.println("Impossible de créer ce client, il existe déjà.");
+					System.out.println("Impossible de crï¿½er ce client, il existe dï¿½jï¿½.");
 					existant = true;
 				}
 			}
 			if (existant == false) {
 				this.clients.add(client);
-				System.out.println("Le client " + client.getNom() + " " + client.getPrenom() + " a bien été créé dans la base de données");
+				System.out.println("Le client " + client.getNom() + " " + client.getPrenom() + " a bien ï¿½tï¿½ crï¿½ï¿½ dans la base de donnï¿½es");
 
 			}
 		}
 
 		else {
-			System.out.println("Impossible de créer un nouveau client : vous ne pouvez pas gérer plus de 10 clients.");
+			System.out.println("Impossible de crï¿½er un nouveau client : vous ne pouvez pas gï¿½rer plus de 10 clients.");
 
 		}
 
@@ -164,7 +174,13 @@ public class Conseiller extends Personne {
 		if (calculerSoldeTotal(client) > 500000) {
 			System.out.println("Riche client !");
 			System.out.println("Gestion de Patrimoine :");
+			Action action1 = new Action("Airbus", 72, "Paris");
+			acheterAction(action1);
 		}
+	}
+	
+	public void acheterAction(Action action) {
+		System.out.println("Achat d'une action " + action.getNom() + " au prix de " + action.getCours());		
 	}
 
 	/**
@@ -178,8 +194,9 @@ public class Conseiller extends Personne {
 	public Client lireClient(String nom, String prenom) {
 		boolean dejaaffiche = false;
 		for (Client client : this.clients) {
+
 			if (nom.equalsIgnoreCase(client.getNom()) && prenom.equalsIgnoreCase(client.getPrenom())) {
-				System.out.println("Données du client " + nom + " " + prenom + " :  Solde de Compte Courant = " + client.getCompteCourant().getSolde() + ", solde de Compte Epargne = "
+				System.out.println("Donnï¿½es du client " + nom + " " + prenom + " :  Solde de Compte Courant = " + client.getCompteCourant().getSolde() + ", solde de Compte Epargne = "
 						+ client.getCompteEpargne().getSolde());
 				return client;
 				
@@ -208,7 +225,7 @@ public class Conseiller extends Personne {
 			Client client = it.next();
 			if (nom == client.getNom() && prenom == client.getPrenom()) {
 				it.remove();
-				System.out.println("Le client " + client.getNom() + " " + client.getPrenom() + " a bien été supprimé dans la base de données");
+				System.out.println("Le client " + client.getNom() + " " + client.getPrenom() + " a bien ï¿½tï¿½ supprimï¿½ dans la base de donnï¿½es");
 				existant = false;
 				System.out.println(clients.size());
 			}
