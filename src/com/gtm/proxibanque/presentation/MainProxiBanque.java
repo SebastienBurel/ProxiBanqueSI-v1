@@ -12,8 +12,8 @@ public class MainProxiBanque {
 	public static void main(String[] args) {
 
 		Conseiller conseiller = new Conseiller();
-		
-		//tests
+
+		// tests
 		CompteCourant cc = new CompteCourant("546", 100, 2000, "Visa Electron");
 		CompteEpargne ce = new CompteEpargne("987", 200, 2000, "Visa Electron");
 		conseiller.creerClient(new Client("Burel", "Seb", "643 route de Layrac", 31200, "Toulouse", "0611167004", cc, ce));
@@ -68,34 +68,34 @@ public class MainProxiBanque {
 			while (x) {
 				int choix2 = clavier.nextInt();
 				switch (choix2) {
-				case 1:
-					System.out.println("Carte Visa Electron choisie");
-					String cb = "Visa Electron";
-					CompteCourant cc1 = new CompteCourant(numeroCC, soldeCC, anneeCC, cb);
-					CompteEpargne ce1 = new CompteEpargne(numeroCE, soldeCE, anneeCE, cb);
-					System.out.println("Le compte courant a bien ete cree : Numero = " + numeroCC + ", solde = " + soldeCC + ", annee de creation = " + anneeCC + ", carte bancaire choisie = " + cb);
-					System.out.println("Le compte epargne a bien ete cree : Numero = " + numeroCE + ", solde = " + soldeCE + ", annee de creation = " + anneeCE);
-					Client cl1 = new Client(nom, prenom, adresse, codepostal, ville, numerotelephone, cc1, ce1);
-					x = false;
-					break;
-				case 2:
-					System.out.println("Carte Visa Premier choisie");
-					cb = "Visa Premier";
-					CompteCourant cc2 = new CompteCourant(numeroCC, soldeCC, anneeCC, cb);
-					CompteEpargne ce2 = new CompteEpargne(numeroCE, soldeCE, anneeCE, cb);
-					System.out.println("Le compte courant a bien ete cree : Numero = " + numeroCC + ", solde = " + soldeCC + ", annee de creation = " + anneeCC + ", carte bancaire choisie = " + cb);
-					System.out.println("Le compte epargne a bien ete cree : Numero = " + numeroCE + ", solde = " + soldeCE + ", annee de creation = " + anneeCE);
-					Client cl2 = new Client(nom, prenom, adresse, codepostal, ville, numerotelephone, cc2, ce2);
-					x = false;
-					break;
-				default:
-					System.out.println("Choix impossible, tapez 1 ou 2");
-					break;
+					case 1:
+						System.out.println("Carte Visa Electron choisie");
+						String cb = "Visa Electron";
+						CompteCourant cc1 = new CompteCourant(numeroCC, soldeCC, anneeCC, cb);
+						CompteEpargne ce1 = new CompteEpargne(numeroCE, soldeCE, anneeCE, cb);
+						System.out.println("Le compte courant a bien ete cree : Numero = " + numeroCC + ", solde = " + soldeCC + ", annee de creation = " + anneeCC + ", carte bancaire choisie = " + cb);
+						System.out.println("Le compte epargne a bien ete cree : Numero = " + numeroCE + ", solde = " + soldeCE + ", annee de creation = " + anneeCE);
+						Client cl1 = new Client(nom, prenom, adresse, codepostal, ville, numerotelephone, cc1, ce1);
+						x = false;
+						break;
+					case 2:
+						System.out.println("Carte Visa Premier choisie");
+						cb = "Visa Premier";
+						CompteCourant cc2 = new CompteCourant(numeroCC, soldeCC, anneeCC, cb);
+						CompteEpargne ce2 = new CompteEpargne(numeroCE, soldeCE, anneeCE, cb);
+						System.out.println("Le compte courant a bien ete cree : Numero = " + numeroCC + ", solde = " + soldeCC + ", annee de creation = " + anneeCC + ", carte bancaire choisie = " + cb);
+						System.out.println("Le compte epargne a bien ete cree : Numero = " + numeroCE + ", solde = " + soldeCE + ", annee de creation = " + anneeCE);
+						Client cl2 = new Client(nom, prenom, adresse, codepostal, ville, numerotelephone, cc2, ce2);
+						x = false;
+						break;
+					default:
+						System.out.println("Choix impossible, tapez 1 ou 2");
+						break;
 				}
 			}
-			clavier.close();
-
-			// Choix 3
+			break;
+			
+		// Choix 3
 		case 3:
 			System.out.println("Lecture des comptes d'un client");
 			System.out.println("Nom de la personne détentrice des comptes : ");
@@ -103,12 +103,10 @@ public class MainProxiBanque {
 			System.out.println("Prenom de la personne détentrice des comptes : ");
 			String prenom5 = clavier.next();
 			conseiller.lireClient(nom5, prenom5);
-			clavier.close();
-			break;
-			
-			
 
-			// Choix 5
+			break;
+
+		// Choix 5
 		case 5:
 			System.out.println("Voulez vous effectuer un virement depuis le Compte Courant vers le Compte Epargne (tapez 1) ou depuis le Compte Epargne vers le compte Courant (tapez 2) ?");
 			boolean x2 = true;
@@ -149,9 +147,9 @@ public class MainProxiBanque {
 				}
 
 			}
-			clavier.close();
-		}
 
+		}
+		clavier.close();
 	}
 
 }
