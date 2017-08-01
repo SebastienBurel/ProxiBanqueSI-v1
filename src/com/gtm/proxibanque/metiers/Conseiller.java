@@ -32,7 +32,7 @@ public class Conseiller extends Personne {
 
 	/**
 	 * Methode de creation d'un profil client
-	 * @param client Client ï¿½ ajouter
+	 * @param client Client à ajouter
 	 * 
 	 * @param client
 	 *            Client ï¿½ ajouter
@@ -43,19 +43,19 @@ public class Conseiller extends Personne {
 			boolean existant = false;
 			for (Client client2 : this.clients) {
 				if (client2.getNom() == client.getNom() && client2.getPrenom() == client.getPrenom()) {
-					System.out.println("Impossible de crï¿½er ce client, il existe dï¿½jï¿½.");
+					System.out.println("Impossible de creer ce client, il existe deja.");
 					existant = true;
 				}
 			}
 			if (existant == false) {
 				this.clients.add(client);
-				System.out.println("Le client " + client.getNom() + " " + client.getPrenom() + " a bien ï¿½tï¿½ crï¿½ï¿½ dans la base de donnï¿½es");
+				System.out.println("Le client " + client.getNom() + " " + client.getPrenom() + " a bien ete cree dans la base de donnees");
 
 			}
 		}
 
 		else {
-			System.out.println("Impossible de crï¿½er un nouveau client : vous ne pouvez pas gï¿½rer plus de 10 clients.");
+			System.out.println("Impossible de creer un nouveau client : vous ne pouvez pas gerer plus de 10 clients.");
 
 		}
 
@@ -196,7 +196,7 @@ public class Conseiller extends Personne {
 		for (Client client : this.clients) {
 
 			if (nom.equalsIgnoreCase(client.getNom()) && prenom.equalsIgnoreCase(client.getPrenom())) {
-				System.out.println("Donnï¿½es du client " + nom + " " + prenom + " :  Solde de Compte Courant = " + client.getCompteCourant().getSolde() + ", solde de Compte Epargne = "
+				System.out.println("Donnees du client " + nom + " " + prenom + " :  Solde de Compte Courant = " + client.getCompteCourant().getSolde() + ", solde de Compte Epargne = "
 						+ client.getCompteEpargne().getSolde());
 				return client;
 				
