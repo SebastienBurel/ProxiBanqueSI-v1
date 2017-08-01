@@ -11,7 +11,6 @@ public final class Gerant extends Conseiller {
 		super();
 		this.listConseillers = new ArrayList<>();
 	}
-
 	
 
 	public Gerant(String nom, String prenom, String adresse, int codepostal, String ville, String numerotelephone, List<Conseiller> listConseillers) {
@@ -19,6 +18,15 @@ public final class Gerant extends Conseiller {
 		this.listConseillers = listConseillers;
 	}
 
+
+	public List<Conseiller> getListConseillers() {
+		return listConseillers;
+	}
+
+
+	public void setListConseillers(List<Conseiller> listConseillers) {
+		this.listConseillers = listConseillers;
+	}
 
 
 	public void ajouterConseiller(Conseiller conseiller) {

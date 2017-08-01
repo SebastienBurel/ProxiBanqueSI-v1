@@ -1,5 +1,6 @@
 package com.gtm.proxibanque.metiers;
 
+
 /**
  * Methode des clients
  * @author Sebounet team
@@ -7,10 +8,8 @@ package com.gtm.proxibanque.metiers;
  */
 public class Client extends Personne {
 
-	// Test Git
 	private CompteCourant compteCourant;
 	private CompteEpargne compteEpargne;
-
 	
 	
 	public Client(String nom, String prenom, String adresse, int codepostal, String ville, String numerotelephone, CompteCourant compteCourant, CompteEpargne compteEpargne) {
