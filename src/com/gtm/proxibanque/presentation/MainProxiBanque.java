@@ -93,6 +93,7 @@ public class MainProxiBanque {
 						System.out.println("Le compte courant a bien ete cree : Numero = " + numeroCC + ", solde = " + soldeCC + ", annee de creation = " + anneeCC + ", carte bancaire choisie = " + cb);
 						System.out.println("Le compte epargne a bien ete cree : Numero = " + numeroCE + ", solde = " + soldeCE + ", annee de creation = " + anneeCE);
 						Client cl1 = new Client(nom, prenom, adresse, codepostal, ville, numerotelephone, cc1, ce1);
+						conseiller.creerClient(cl1);
 						x = false;
 						break;
 					case 2:
@@ -103,6 +104,7 @@ public class MainProxiBanque {
 						System.out.println("Le compte courant a bien ete cree : Numero = " + numeroCC + ", solde = " + soldeCC + ", annee de creation = " + anneeCC + ", carte bancaire choisie = " + cb);
 						System.out.println("Le compte epargne a bien ete cree : Numero = " + numeroCE + ", solde = " + soldeCE + ", annee de creation = " + anneeCE);
 						Client cl2 = new Client(nom, prenom, adresse, codepostal, ville, numerotelephone, cc2, ce2);
+						conseiller.creerClient(cl2);
 						x = false;
 						break;
 					default:
