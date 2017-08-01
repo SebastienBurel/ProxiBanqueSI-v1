@@ -7,7 +7,7 @@ package com.gtm.proxibanque.metiers;
  */
 public class Client extends Personne {
 
-	
+	// Test Git
 	private CompteCourant compteCourant;
 	private CompteEpargne compteEpargne;
 
