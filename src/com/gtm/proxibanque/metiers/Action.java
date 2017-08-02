@@ -45,6 +45,11 @@ public class Action {
 	public void setBourse(String bourse) {
 		this.bourse = bourse;
 	}
+
+	@Override
+	public String toString() {
+		return "Action [nom=" + nom + ", cours=" + cours + ", bourse=" + bourse + "]";
+	}
 	
 	
 }

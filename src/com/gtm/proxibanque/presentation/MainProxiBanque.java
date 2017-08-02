@@ -186,6 +186,7 @@ public class MainProxiBanque {
 				Client client8 = conseiller.lireClient(nom8, prenom8);
 				if (conseiller.gererPatrimoine(client8)) {
 					conseiller.afficherActionsDisponibles();
+					conseiller.afficherActionsClient(client8);
 					System.out.println("Acheter action Airbus : tapez 1");
 					System.out.println("Acheter action Facebook : tapez 2");
 					System.out.println("Acheter action Sony : tapez 3");

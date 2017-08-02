@@ -206,12 +206,16 @@ public class Conseiller extends Personne {
 	public void afficherActionsClient(Client client) {
 		if 	(client.getPortefeuilleActions().size() == 0) {
 			System.out.println("Le client "+ client.getPrenom() + " " + client.getNom() +
-					"ne possede pas encore d actions.");
+					" ne possede pas encore d actions.");
 		} else {
-			Enumeration<Action> e_key = client.getPortefeuilleActions().keys();
+			Enumeration e_key = client.getPortefeuilleActions().keys();
+			Enumeration e_val = client.getPortefeuilleActions().elements();
+			System.out.println("Le client "+ client.getPrenom() + " " + client.getNom() +
+					" possede ces actions.");
 			while(e_key.hasMoreElements())
 			{
-				//System.out.println("Le client e_key.nextElement() + " : ")");
+				System.out.println("Le client possede " + e_val.nextElement() 
+				+ " actions : " + e_key.nextElement());
 			}
 		}
 
