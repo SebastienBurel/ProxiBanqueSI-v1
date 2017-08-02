@@ -46,22 +46,20 @@ public class Conseiller extends Personne {
 	 * 
 	 * @param client
 	 *            Client � ajouter
-	 * 
-	 * @param client
-	 *            Client � ajouter
 	 */
 	public void creerClient(Client client) {
 
 		if (clients.size() < Constantes.NOMBRE_MAX_CLIENTS_PAR_CONSEILLER) {
 			boolean existant = false;
 			for (Client client2 : this.clients) {
-				if (client2.getNom() == client.getNom() && client2.getPrenom() == client.getPrenom()) {
-					System.out.println("Impossible de cr�er ce client, il existe d�j�.");
+				if (client2.getNom().equalsIgnoreCase(client.getNom()) && client2.getPrenom().equalsIgnoreCase(client.getPrenom())) {
+					System.out.println("Impossible de creer ce client, il existe deja.");
 					existant = true;
 				}
 			}
 			if (existant == false) {
 				this.clients.add(client);
+
 				System.out.println("Le client " + client.getNom() + " " + client.getPrenom()
 						+ " a bien �t� cr�� dans la base de donn�es");
 
@@ -69,7 +67,7 @@ public class Conseiller extends Personne {
 		}
 
 		else {
-			System.out.println("Impossible de cr�er un nouveau client : vous ne pouvez pas g�rer plus de 10 clients.");
+			System.out.println("Impossible de creer un nouveau client : vous ne pouvez pas gerer plus de 10 clients.");
 
 		}
 
@@ -210,22 +208,18 @@ public class Conseiller extends Personne {
 	 * @param client
 	 *            Proprietaire du compte
 	 */
-	public void gererPatrimoine(Client client) {
+	public boolean gererPatrimoine(Client client) {
 		if (calculerSoldeTotal(client) > Constantes.SOLDE_MINIMUM_CLIENT_FORTUNE) {
 			System.out.println("Le client " + client.getPrenom() + " " + client.getNom() + 
-					" a un solde suffisant pour beneficier de la gestion de patrimoine");
+					" a un solde total suffisant (" + calculerSoldeTotal(client) + " euros) pour beneficier de la gestion de patrimoine");
 			System.out.println("Gestion de Patrimoine :");
-			Action actionAirbus = new Action("Airbus", 72, "Paris");
-			ajouterActionDisponible(actionAirbus);
-			Action actionFacebook = new Action("Facebook", 144, "New York");
-			ajouterActionDisponible(actionFacebook);
-			Action actionSony = new Action("Sony", 37, "Tokyo");
-			ajouterActionDisponible(actionSony);
-			afficherActionsDisponibles();
-			acheterAction(client, actionFacebook, 10);
+			return true;
+			
 		} else {
 			System.out.println("Le client " + client.getPrenom() + " " + client.getNom() +
 					" n est pas assez riche pour beneficier de la gestion de patrimoine !");
+			System.out.println("Son solde total n'est que de " + calculerSoldeTotal(client) + " euros.");
+			return false;
 		}
 	}
 
@@ -233,15 +227,34 @@ public class Conseiller extends Personne {
 		System.out.println("Achat de "+ quantite +" action(s) " + action.getNom() + " au prix de " + action.getCours() + " euros.");
 		if (client.getPortefeuilleActions().containsKey(action)) {
 			this.nbAction = client.getPortefeuilleActions().get(action);
-			System.out.println(nbAction);
 		} else {
 			this.nbAction = 0;
-			System.out.println(nbAction);
 		}
-		client.getPortefeuilleActions().put(action,nbAction + quantite);
-		System.out.println("Le client " + client.getPrenom() + " " + client.getNom() + 
-				" possede maintenant " + client.getPortefeuilleActions().get(action) + 
-				" action(s) " + action.getNom() + ".");
+		soldeCompteCourantClient = client.getCompteCourant().getSolde();
+		soldeCompteEpargneClient = client.getCompteEpargne().getSolde();
+		client.getCompteCourant().retirer(quantite*action.getCours());
+		if (soldeCompteCourantClient == client.getCompteCourant().getSolde()) {
+			System.out.println("Erreur d achat des actions avec le compte courant !");
+			System.out.println("Tentative avec le compte epargne !");
+			client.getCompteEpargne().retirer(quantite*action.getCours());
+			if (soldeCompteEpargneClient == client.getCompteEpargne().getSolde()) {
+				System.out.println("Erreur d achat des actions avec le compte epargne !");
+				System.out.println("Echec d achat des actions !");
+			} else {
+				System.out.println("Achat des actions OK");
+				client.getPortefeuilleActions().put(action,nbAction + quantite);
+				System.out.println("Le client " + client.getPrenom() + " " + client.getNom() + 
+						" possede maintenant " + client.getPortefeuilleActions().get(action) + 
+						" action(s) " + action.getNom() + ".");
+			}
+		} else {
+			System.out.println("Achat des actions OK");
+			client.getPortefeuilleActions().put(action,nbAction + quantite);
+			System.out.println("Le client " + client.getPrenom() + " " + client.getNom() + 
+					" possede maintenant " + client.getPortefeuilleActions().get(action) + 
+					" action(s) " + action.getNom() + ".");
+		}
+		
 	}
 
 	/**
@@ -257,9 +270,9 @@ public class Conseiller extends Personne {
 		for (Client client : this.clients) {
 
 			if (nom.equalsIgnoreCase(client.getNom()) && prenom.equalsIgnoreCase(client.getPrenom())) {
-				System.out.println("Donn�es du client " + nom + " " + prenom + " :  Solde de Compte Courant = "
-						+ client.getCompteCourant().getSolde() + ", solde de Compte Epargne = "
-						+ client.getCompteEpargne().getSolde());
+
+				System.out.println("Donnees du client " + nom + " " + prenom + " :  Solde de Compte Courant = " + client.getCompteCourant().getSolde() + ", solde de Compte Epargne = " + client.getCompteEpargne().getSolde());
+
 				return client;
 
 			}
@@ -267,7 +280,6 @@ public class Conseiller extends Personne {
 		}
 		if (dejaaffiche == false) {
 			System.out.println("Le client n'existe pas");
-
 		}
 		return null;
 	}
