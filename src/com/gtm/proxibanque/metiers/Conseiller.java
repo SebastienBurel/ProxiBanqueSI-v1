@@ -1,6 +1,7 @@
 package com.gtm.proxibanque.metiers;
 
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -200,6 +201,20 @@ public class Conseiller extends Personne {
 					" sur la bourse de " + action.getBourse() + 
 					" au prix de " + action.getCours() + " euros.");
 		}
+	}
+	
+	public void afficherActionsClient(Client client) {
+		if 	(client.getPortefeuilleActions().size() == 0) {
+			System.out.println("Le client "+ client.getPrenom() + " " + client.getNom() +
+					"ne possede pas encore d actions.");
+		} else {
+			Enumeration<Action> e_key = client.getPortefeuilleActions().keys();
+			while(e_key.hasMoreElements())
+			{
+				//System.out.println("Le client e_key.nextElement() + " : ")");
+			}
+		}
+
 	}
 
 	/**
